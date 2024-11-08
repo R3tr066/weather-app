@@ -9,11 +9,7 @@ export const useThemeStore = defineStore('theme', {
     toggleTheme() {
       this.isDarkMode = !this.isDarkMode;
       localStorage.setItem('isDarkMode', JSON.stringify(this.isDarkMode));
-      if (this.isDarkMode) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+      document.documentElement.classList.toggle('dark', this.isDarkMode);
     },
   },
 });
