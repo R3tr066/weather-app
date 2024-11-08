@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import NavBar from "@/components/navBar.vue";
+import NavBar from "@/components/NavBar.vue";
+import Footer from "@/components/Footer.vue";
 </script>
 
 <template>
-  <nav-bar/>
-
+  <NavBar/>
+  <p>toto je homeView</p>
+  <Footer/>
 </template>
+
+<style scoped>
+
+</style>
