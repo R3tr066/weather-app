@@ -1,12 +1,19 @@
 import { createApp } from 'vue';
-import { createPinia } from 'pinia'; // Import Pinia
+import { createPinia } from 'pinia';
 import App from './App.vue';
 import router from './router';
+import { useThemeStore } from './stores/theme.js';
 import './assets/main.css';
 
-const app = createApp(App);
 
-app.use(createPinia());
+const app = createApp(App);
+const pinia = createPinia();
+
+app.use(pinia);
 app.use(router);
+
+// Load theme before mounting the app
+const themeStore = useThemeStore();
+themeStore.loadTheme();
 
 app.mount('#app');

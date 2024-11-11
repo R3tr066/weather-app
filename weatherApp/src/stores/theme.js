@@ -1,15 +1,29 @@
-// theme.js (Pinia store)
 import { defineStore } from 'pinia';
 
 export const useThemeStore = defineStore('theme', {
   state: () => ({
-    isDarkMode: JSON.parse(localStorage.getItem('isDarkMode')) || false,
+    isDarkMode: localStorage.getItem('darkMode') === 'true',
   }),
   actions: {
     toggleTheme() {
       this.isDarkMode = !this.isDarkMode;
-      localStorage.setItem('isDarkMode', JSON.stringify(this.isDarkMode));
-      document.documentElement.classList.toggle('dark', this.isDarkMode);
+      localStorage.setItem('darkMode', String(this.isDarkMode));
+
+      if (this.isDarkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    },
+    loadTheme() {
+      const savedTheme = localStorage.getItem('darkMode');
+      this.isDarkMode = savedTheme === 'true';
+
+      if (this.isDarkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     },
   },
 });
