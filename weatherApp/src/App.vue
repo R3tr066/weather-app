@@ -3,7 +3,8 @@ import {RouterLink, RouterView} from 'vue-router'
 import NavBar from "@/components/NavBar.vue";
 
 import {onMounted} from 'vue';
-import {useThemeStore} from './stores/theme.js';
+import {useThemeStore} from './stores/theme';
+import Footer from "@/components/Footer.vue";
 
 const themeStore = useThemeStore();
 
@@ -17,11 +18,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <body class="bg-white dark:bg-gray-900">
-    <div id="app" class="bg-white dark:bg-gray-900">
-      <router-view/>
-    </div>
-  </body>
+  <NavBar/>
+  <router-view/>
+  <Footer/>
 </template>
 
 <style scoped>
