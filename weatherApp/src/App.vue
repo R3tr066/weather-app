@@ -19,7 +19,9 @@ onMounted(() => {
 
 <template>
   <NavBar/>
-  <router-view/>
+  <div class="mt-20">
+    <router-view/>
+  </div>
   <Footer/>
 </template>
 

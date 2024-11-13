@@ -26,7 +26,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="weather-card bg-white dark:bg-gray-800 p-4 shadow-md transition-colors duration-300">
+  <div class="ml-2 weather-card bg-white rounded dark:bg-gray-800 p-4 shadow-md transition-colors duration-300">
     <div class="flex items-center justify-between mb-2">
       <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{ location }}</h2>
       <span class="text-gray-500 dark:text-gray-400 text-sm">{{ date }}</span>

@@ -5,16 +5,9 @@ import WeatherCard from "@/components/WeatherCard.vue";
 </script>
 
 <template>
-  <WeatherCard
-    location="New York"
-    :temperature="26"
-    condition="Sunny"
-    :windSpeed="10"
-    :humidity="65"
-    :feelsLike="28"
-    :pressure="1012"
-    iconCode="01d"
-  />
+  <div class="bg-white text-black dark:bg-gray-800 dark:text-white transition-colors duration-300 ease-in-out">
+    <p>Toto je HomeView</p>
+  </div>
 </template>
 
 <style scoped>
