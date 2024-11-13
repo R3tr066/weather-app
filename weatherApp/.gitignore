@@ -1,3 +1,6 @@
+weatherApp/src/services/
+weatherService.ts
+
 # Logs
 logs
 *.log
@@ -20,7 +23,6 @@ coverage
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
 *.suo
 *.ntvs*
 *.njsproj
@@ -29,4 +31,4 @@ coverage
 
 *.tsbuildinfo
 
-/weatherApp/src/services/weatherService.ts
+.idea
