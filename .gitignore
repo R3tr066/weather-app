@@ -1,3 +1,5 @@
+weatherApp/src/services/weatherService.ts
+
 # Logs
 logs
 *.log
