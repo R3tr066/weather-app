@@ -12,7 +12,6 @@ export default defineComponent({
     const isDarkMode = computed(() => themeStore.isDarkMode);
     const toggleTheme = themeStore.toggleTheme;
 
-    // Check active route to apply active styling
     const isActiveRoute = (path: string) => route.path === path;
 
     return {
@@ -25,8 +24,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 transition-colors duration-300 ease-in-out">
+  <nav class="bg-zinc-50 dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 transition-colors duration-300 ease-in-out">
     <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+
       <!-- Logo -->
       <RouterLink to="/" class="flex items-center space-x-3 rtl:space-x-reverse mr-auto">
         <img src="/img/siteLogo.png" class="h-8" alt="weather app logo">

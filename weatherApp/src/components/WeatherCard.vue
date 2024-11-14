@@ -18,7 +18,6 @@ export default defineComponent({
       return new Date().toLocaleDateString();
     },
     iconUrl() {
-      // Use the `iconCode` to get the URL of the weather icon
       return `https://openweathermap.org/img/wn/${this.iconCode}@2x.png`;
     },
   },
@@ -26,7 +25,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="ml-2 weather-card bg-white rounded dark:bg-gray-800 p-4 shadow-md transition-colors duration-300">
+  <div class="ml-2 weather-card bg-[#F7E7CE] rounded dark:bg-gray-800 p-4 shadow-md transition-colors duration-300">
     <div class="flex items-center justify-between mb-2">
       <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{ location }}</h2>
       <span class="text-gray-500 dark:text-gray-400 text-sm">{{ date }}</span>
@@ -38,7 +37,7 @@ export default defineComponent({
 
       <!-- Temperature -->
       <div class="text-center">
-        <p class="text-4xl font-bold text-blue-500">{{ temperature }}°</p>
+        <p class="text-4xl font-bold text-blue-500">{{ temperature }}°C</p>
         <p class="text-sm text-gray-500 dark:text-gray-400">{{ condition }}</p>
       </div>
     </div>

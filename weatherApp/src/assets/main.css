@@ -1,4 +1,22 @@
+/* Global styles for background color transitions */
+
 @import 'flowbite';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    background-color: var(--bg-color, #f4f4f5);  /* Default is light mode color */
+    transition: background-color 0.3s ease;  /* Smooth transition */
+}
+
+.dark {
+    /* Dark mode background color */
+    --bg-color: #1f2937 /* Custom dark mode background */
+}
+
+body {
+    /* Fallback for body background color */
+    background-color: var(--bg-color, #f4f4f5);
+    transition: background-color 0.3s ease; /* Smooth transition */
+}

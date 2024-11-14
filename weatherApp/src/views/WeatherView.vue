@@ -2,7 +2,7 @@
 import {defineComponent, ref} from 'vue';
 import WeatherCard from '@/components/WeatherCard.vue';
 import {getWeatherByCity} from '@/services/weatherService';
-import type {WeatherData} from '@/types';
+import type {WeatherData} from '@/types/weatherTypes';
 
 export default defineComponent({
   name: 'WeatherView',
@@ -34,7 +34,7 @@ export default defineComponent({
       Get Weather
     </button>
   </div>
-  <div class="">
+  <div>
     <WeatherCard
       v-if="weather"
       :location="weather.name"
