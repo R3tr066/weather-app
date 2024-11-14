@@ -7,7 +7,6 @@ import WeatherCardFavorites from "@/components/WeatherCardFavorites.vue";
 
 <template>
   <div class="mt-20 text-black dark:text-white">
-    Toto je HomeView
     <weather-card-favorites/>
   </div>
 </template>
