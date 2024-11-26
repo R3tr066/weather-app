@@ -6,7 +6,7 @@ import WeatherCardFavorites from "@/components/WeatherCardFavorites.vue";
 </script>
 
 <template>
-  <div class="mt-20 text-black dark:text-white">
+  <div class="text-black dark:text-white">
     <weather-card-favorites/>
   </div>
 </template>

@@ -20,7 +20,7 @@ onMounted(() => {
 <template>
   <NavBar/>
   <body>
-    <div class="mt-16">
+    <div class="mt-20">
       <router-view/>
     </div>
   </body>

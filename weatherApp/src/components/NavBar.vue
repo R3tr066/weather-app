@@ -76,6 +76,9 @@ export default defineComponent({
           <li>
             <RouterLink :to="'/weather'" :class="getLinkClass('/weather')">Weather</RouterLink>
           </li>
+          <li>
+            <RouterLink :to="'/weather-json'" :class="getLinkClass('/weather-json')">Weather-json</RouterLink>
+          </li>
         </ul>
       </div>
     </div>

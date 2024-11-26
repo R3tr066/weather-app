@@ -15,9 +15,24 @@ export default defineComponent({
   },
   emits: ['remove'], // Declare the 'remove' event
 
+  data() {
+    return {
+      isRemoving: false, // New flag to manage removal animation
+    };
+  },
+
   methods: {
-    removeCity() {
-      this.$emit('remove', this.location); // Emit the remove event with the city name
+    confirmRemoveCity() {
+      // Show a confirmation dialog before removing the city
+      const confirmRemove = window.confirm(`Are you sure you want to remove ${this.location} from your favorite cities?`);
+
+      if (confirmRemove) {
+        // Add a small delay to allow for animation
+        this.isRemoving = true;
+        setTimeout(() => {
+          this.$emit('remove', this.location);
+        }, 300); // Match this with the transition duration
+      }
     },
   },
   computed: {
@@ -32,12 +47,20 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="mt-2 ml-2 weather-card bg-[#F7E7CE] rounded dark:bg-gray-900 p-4 shadow-md transition-colors duration-300">
+  <div
+    class="weather-card mt-2 ml-2 bg-[#F7E7CE] rounded dark:bg-gray-900 p-4 shadow-md transition-all duration-300"
+    :class="{
+      'opacity-0 scale-90': isRemoving, // Animation class for removal
+      'transition-transform': true
+    }">
     <div class="flex items-center justify-between mb-2">
       <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{ location }}</h2>
       <span class="text-gray-500 dark:text-gray-400 text-sm">{{ date }}</span>
-      <!-- Remove Button -->
-      <button @click="removeCity">
+      <!-- Remove Button with Confirmation -->
+      <button
+        @click="confirmRemoveCity"
+        class="hover:bg-red-100 rounded-full p-1 transition-colors"
+        title="Remove city">
         <img src="/img/close.png" alt="close button" class="w-5 h-5">
       </button>
     </div>
@@ -70,5 +93,6 @@ export default defineComponent({
 <style scoped>
 .weather-card {
   max-width: 300px;
+  transition: all 0.3s ease;
 }
 </style>
