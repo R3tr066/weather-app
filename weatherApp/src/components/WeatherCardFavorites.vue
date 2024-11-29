@@ -1,12 +1,12 @@
 <script lang="ts">
-import {defineComponent} from 'vue';
-import {getWeatherByCity} from '@/services/weatherService';
+import { defineComponent } from 'vue';
+import { getWeatherByCity } from '@/services/weatherService';
 import WeatherCard from '../components/WeatherCard.vue';
-import type {WeatherData} from '@/types/weatherTypes';
+import type { WeatherData } from '@/types/weatherTypes';
 
 export default defineComponent({
   name: 'FavoriteCitiesWeather',
-  components: {WeatherCard},
+  components: { WeatherCard },
   data() {
     return {
       newCity: '',
@@ -100,32 +100,24 @@ export default defineComponent({
       />
       <button
         type="submit"
-        class="ml-2 basis-1/8 text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:text-white dark:bg-gradient-to-br dark:from-purple-600 dark:to-blue-500 dark:hover:bg-gradient-to-bl dark:focus:ring-4 dark:focus:outline-none dark:focus:ring-blue-800 dark:font-medium dark:rounded-lg dark:text-sm dark:px-5 dark:py-2.5 dark:text-center dark:me-2 dark:mb-2 transition-colors duration-300 ease-in-out"
-      >
-        Add City
-      </button>
+        class="ml-2 basis-1/8 text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:text-white dark:bg-gradient-to-br dark:from-purple-600 dark:to-blue-500 dark:hover:bg-gradient-to-bl dark:focus:ring-4 dark:focus:outline-none dark:focus:ring-blue-800 dark:font-medium dark:rounded-lg dark:text-sm dark:px-5 dark:py-2.5 dark:text-center dark:me-2 dark:mb-2 transition-colors duration-300 ease-in-out">Add City</button>
     </form>
 
     <!-- Weather Cards for Favorite Cities -->
-    <div class="mt-2 flex flex-wrap" v-if="favoriteCitiesWeather.length">
-      <div
+    <div class="mt-2 flex flex-wrap justify-start gap-4" v-if="favoriteCitiesWeather.length">
+      <WeatherCard
         v-for="(weather, index) in favoriteCitiesWeather"
         :key="index"
-        class="flex flex-col items-center justify-center p-4 w-1/6"
-      >
-        <WeatherCard
-          v-if="weather"
-          :location="weather.name"
-          :temperature="weather.main.temp"
-          :condition="weather.weather[0].description"
-          :windSpeed="weather.wind.speed"
-          :humidity="weather.main.humidity"
-          :feelsLike="weather.main.feels_like"
-          :pressure="weather.main.pressure"
-          :iconCode="weather.weather[0].icon"
-          @remove="removeCity"
-        />
-      </div>
+        :location="weather.name"
+        :temperature="weather.main.temp"
+        :condition="weather.weather[0].description"
+        :windSpeed="weather.wind.speed"
+        :humidity="weather.main.humidity"
+        :feelsLike="weather.main.feels_like"
+        :pressure="weather.main.pressure"
+        :iconCode="weather.weather[0].icon"
+        @remove="removeCity"
+      />
     </div>
   </div>
 </template>
