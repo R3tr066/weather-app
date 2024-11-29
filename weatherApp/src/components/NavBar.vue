@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import { useThemeStore } from '@/stores/theme';
+import { useThemeStore } from '@/stores/ThemeStore';
 import { useRoute, RouterLink } from 'vue-router';
 
 export default defineComponent({
@@ -75,9 +75,6 @@ export default defineComponent({
           </li>
           <li>
             <RouterLink :to="'/weather'" :class="getLinkClass('/weather')">Weather</RouterLink>
-          </li>
-          <li>
-            <RouterLink :to="'/weather-json'" :class="getLinkClass('/weather-json')">Weather-json</RouterLink>
           </li>
         </ul>
       </div>

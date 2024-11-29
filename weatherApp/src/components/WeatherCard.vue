@@ -48,18 +48,13 @@ export default defineComponent({
 
 <template>
   <div
-    class="weather-card mt-2 ml-2 bg-[#F7E7CE] rounded dark:bg-gray-900 p-4 shadow-md transition-all duration-300"
-    :class="{
-      'opacity-0 scale-90': isRemoving, // Animation class for removal
-      'transition-transform': true
-    }">
+    class=" mt-2 ml-2 bg-[#F7E7CE] rounded dark:bg-gray-900 p-4 shadow-md transition-all duration-300">
     <div class="flex items-center justify-between mb-2">
       <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{ location }}</h2>
       <span class="text-gray-500 dark:text-gray-400 text-sm">{{ date }}</span>
       <!-- Remove Button with Confirmation -->
       <button
-        @click="confirmRemoveCity"
-        class="hover:bg-red-100 rounded-full p-1 transition-colors"
+        @click="confirmRemoveCity"a
         title="Remove city">
         <img src="/img/close.png" alt="close button" class="w-5 h-5">
       </button>
@@ -91,8 +86,5 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.weather-card {
-  max-width: 300px;
-  transition: all 0.3s ease;
-}
+
 </style>

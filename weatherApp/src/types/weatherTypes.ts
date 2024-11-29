@@ -1,116 +1,51 @@
-// weatherTypes.ts
-
-// Base weather condition interface
-export interface WeatherCondition {
-  id: number;
-  main: string;
-  description: string;
-  icon: string;
-}
-
-// Comprehensive weather data interface
+// Type definition for current weather data
 export interface WeatherData {
-  name: string;
-  coord: {
-    lon: number;
-    lat: number;
-  };
+  name: string; // City name
   main: {
-    temp: number;
-    feels_like: number;
-    temp_min: number;
-    temp_max: number;
-    pressure: number;
-    humidity: number;
-    sea_level?: number;
-    grnd_level?: number;
+    temp: number; // Current temperature
+    feels_like: number; // Feels-like temperature
+    pressure: number; // Atmospheric pressure
+    humidity: number; // Humidity percentage
   };
-  weather: WeatherCondition[];
+  weather: {
+    description: string; // Weather description (e.g., "light rain")
+    icon: string; // Weather icon code (e.g., "10d")
+  }[];
   wind: {
-    speed: number;
-    deg: number;
-    gust?: number;
+    speed: number; // Wind speed
   };
-  clouds?: {
-    all: number;
-  };
-  sys: {
-    type?: number;
-    id?: number;
-    country: string;
-    sunrise: number;
-    sunset: number;
-  };
-  timezone: number;
-  dt: number;
 }
 
-// Forecast data interface
+// Type definition for 5-day forecast data
 export interface ForecastData {
-  city: {
-    id: number;
-    name: string;
-    coord: {
-      lat: number;
-      lon: number;
-    };
-    country: string;
-    population: number;
-    timezone: number;
-    sunrise: number;
-    sunset: number;
+  date: string; // Date or day of the week (e.g., "Mon")
+  temp: number; // Average temperature for the day
+  icon: string; // Weather icon code for the day
+  description: string; // General weather description for the day (e.g., "clear sky")
+}
+
+// Optional: If you want a more detailed forecast structure (e.g., including 3-hour intervals)
+export interface DetailedForecastEntry {
+  dt: number; // Timestamp
+  main: {
+    temp: number; // Temperature
+    feels_like: number; // Feels-like temperature
+    pressure: number; // Atmospheric pressure
+    humidity: number; // Humidity percentage
   };
-  list: ForecastItem[];
+  weather: {
+    description: string; // Weather description
+    icon: string; // Weather icon code
+  }[];
+  wind: {
+    speed: number; // Wind speed
+  };
 }
 
-// Forecast item interface
-export interface ForecastItem extends Omit<WeatherData, 'name' | 'sys' | 'timezone'> {
-  dt_txt: string;
-  pop?: number; // Probability of precipitation
-}
-
-// Location suggestion interface for search autocomplete
-export interface LocationSuggestion {
-  name: string;
-  country: string;
-  state?: string;
-  lat: number;
-  lon: number;
-}
-
-// Geolocation interface
-export interface Geolocation {
-  latitude: number;
-  longitude: number;
-}
-
-// Weather alert interface
-export interface WeatherAlert {
-  sender_name: string;
-  event: string;
-  start: number;
-  end: number;
-  description: string;
-}
-
-// Utility function to format timestamp
-export function formatTimestamp(timestamp: number, timezone: number): string {
-  return new Date((timestamp + timezone) * 1000).toUTCString();
-}
-
-// Utility function to get weather icon URL
-export function getWeatherIconUrl(iconCode: string, size: number = 2): string {
-  return `https://openweathermap.org/img/wn/${iconCode}@${size}x.png`;
-}
-
-// Utility function to convert wind direction
-export function convertWindDirection(degrees: number): string {
-  const directions = [
-    'North', 'North-Northeast', 'Northeast', 'East-Northeast',
-    'East', 'East-Southeast', 'Southeast', 'South-Southeast',
-    'South', 'South-Southwest', 'Southwest', 'West-Southwest',
-    'West', 'West-Northwest', 'Northwest', 'North-Northwest'
-  ];
-  const index = Math.round(degrees / 22.5) % 16;
-  return directions[index];
+export interface DetailedForecastData {
+  city: {
+    name: string; // City name
+    country: string; // Country code
+  };
+  list: DetailedForecastEntry[]; // List of forecast entries (every 3 hours)
 }
