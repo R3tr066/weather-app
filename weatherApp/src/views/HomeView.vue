@@ -1,15 +1,23 @@
-<script setup lang="ts">
-import NavBar from "@/components/NavBar.vue";
-import Footer from "@/components/Footer.vue";
-import WeatherCard from "@/components/WeatherCard.vue";
+<script lang="ts">
+import { defineComponent } from "vue";
+import WeatherCardFavorites from "@/components/WeatherCardFavorites.vue";
+
+export default defineComponent({
+  name: "HomeView",
+  components: {
+    WeatherCardFavorites,
+  },
+});
 </script>
 
 <template>
-  <div class="bg-white text-black dark:bg-gray-800 dark:text-white transition-colors duration-300 ease-in-out">
-    <p>Toto je HomeView</p>
+  <div class="text-black dark:text-white">
+    <weather-card-favorites />
   </div>
 </template>
 
 <style scoped>
-
+body {
+  transition: background-color 0.5s ease;
+}
 </style>

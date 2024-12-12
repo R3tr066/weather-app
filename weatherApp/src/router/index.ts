@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import WeatherView from "@/views/WeatherView.vue";
+import {createRouter, createWebHistory} from 'vue-router'
+import HomeView from '@/views/HomeView.vue'
+import DailyForecast from '@/views/DailyForecastView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,10 +11,10 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/weather',
-      name: 'weather',
-      component: WeatherView,
-    }
+      path: '/daily-forecast',
+      name: 'daily forecast',
+      component: DailyForecast,
+    },
   ],
 })
 

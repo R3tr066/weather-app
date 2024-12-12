@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { WeatherData } from '@/types';
+import type { WeatherData } from '@/types/weatherTypes';
 
 const apiKey = 'Your Api Key';
 const baseURL = 'https://api.openweathermap.org/data/2.5';
