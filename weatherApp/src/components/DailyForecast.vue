@@ -1,13 +1,16 @@
 <template>
   <div>
     <!-- Input field for city name -->
-    <div class="ml-2">
-      <input v-model="cityInput" type="text" placeholder="Enter city name"/>
-      <button @click="saveCity">Get Forecast</button>
+    <div class="flex flex-row">
+      <input v-model="cityInput" class="ml-2 rounded-lg" type="text" placeholder="Enter city name"/>
+      <button @click="saveCity"
+              class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ml-2">
+        Get Forecast
+      </button>
     </div>
 
     <!-- Display the forecast data -->
-    <div v-if="forecastData.length" class="flex flex-wrap md:gap-6 mt-2 ml-5">
+    <div v-if="forecastData.length" class="flex flex-wrap justify-center md:gap-6 mt-2 ml-5">
       <div v-for="forecast in forecastData" :key="forecast.date"
            class="weather-card mt-2 ml-2 bg-[#F7E7CE] rounded dark:bg-gray-900 p-4 shadow-md">
 
@@ -21,11 +24,12 @@
           </div>
 
           <div class="transition-all duration-300 text-black dark:text-white">
-            <img :src="`https://openweathermap.org/img/wn/${forecast.icon}.png`" alt="weather icon" width="64px" height="64px"/>
+            <img :src="`https://openweathermap.org/img/wn/${forecast.icon}.png`" alt="weather icon" width="64px"
+                 height="64px"/>
           </div>
 
         </div>
-        <div class="flex justify-end">
+        <div class="flex justify-end text-black dark:text-white">
           <p>{{ forecast.description }}</p>
         </div>
 
@@ -34,15 +38,25 @@
     </div>
 
     <!-- Loading indicator or error message -->
-    <div v-else-if="loading">Loading forecast...</div>
+    <div v-else-if="loading">
+      <self-building-square-spinner
+        :animation-duration="6000"
+        :size="40"
+        color="#1A56DB"
+      />
+    </div>
     <div v-else-if="errorMessage">{{ errorMessage }}</div>
   </div>
 </template>
 
 <script>
 import {get5DayForecast} from '@/services/weatherService'; // Assuming weatherService is here
+import {SelfBuildingSquareSpinner} from 'epic-spinners'
 
 export default {
+  components: {
+    SelfBuildingSquareSpinner
+  },
   data() {
     return {
       cityInput: '', // Local variable to hold input city name
