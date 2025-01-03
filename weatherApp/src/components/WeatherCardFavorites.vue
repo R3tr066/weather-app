@@ -93,14 +93,12 @@ export default defineComponent({
   <div>
     <!-- Form to Add a New City -->
     <form @submit.prevent="addCity" class="flex flex-row">
-      <input
-        v-model="newCity"
-        placeholder="Enter city name"
-        class="ml-2 max-h-10 basis-1/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition-colors duration-300 ease-in-out"
-      />
+      <input v-model="newCity" class="ml-2 rounded-lg" type="text" placeholder="Enter city name"/>
+
       <button
         type="submit"
-        class="ml-2 basis-1/8 text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:text-white dark:bg-gradient-to-br dark:from-purple-600 dark:to-blue-500 dark:hover:bg-gradient-to-bl dark:focus:ring-4 dark:focus:outline-none dark:focus:ring-blue-800 dark:font-medium dark:rounded-lg dark:text-sm dark:px-5 dark:py-2.5 dark:text-center dark:me-2 dark:mb-2 transition-colors duration-300 ease-in-out">Add City</button>
+        class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 ml-2">Add City</button>
+
     </form>
 
     <!-- Weather Cards for Favorite Cities -->

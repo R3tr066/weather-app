@@ -14,6 +14,11 @@ export interface WeatherData {
   wind: {
     speed: number; // Wind speed
   };
+  sys: {
+    sunrise: number; // Sunrise time (UNIX timestamp)
+    sunset: number;  // Sunset time (UNIX timestamp)
+  };
+  dt: number; // Current time (UNIX timestamp)
 }
 
 // Type definition for 5-day forecast data

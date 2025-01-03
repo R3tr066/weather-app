@@ -73,6 +73,9 @@ export default defineComponent({
             <RouterLink :to="'/'" :class="getLinkClass('/')">Home</RouterLink>
           </li>
           <li>
+            <RouterLink :to="'/favorite-cities'" :class="getLinkClass('/favorite-cities')">favorite cities</RouterLink>
+          </li>
+          <li>
             <RouterLink :to="'/daily-forecast'" :class="getLinkClass('/daily-forecast')">Daily forecast</RouterLink>
           </li>
         </ul>

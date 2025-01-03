@@ -1,20 +1,23 @@
 <script lang="ts">
-import { defineComponent } from "vue";
-import WeatherCardFavorites from "@/components/WeatherCardFavorites.vue";
+import { defineComponent } from "vue"
+import CurrentLocationWeather from "@/components/CurrentLocationWeather.vue";
 
 export default defineComponent({
   name: "HomeView",
   components: {
-    WeatherCardFavorites,
+    CurrentLocationWeather
+
   },
 });
 </script>
 
 <template>
-  <div class="text-black dark:text-white">
-    <weather-card-favorites />
+  <div class="p-6">
+    <h1 class="text-black dark:text-white text-2xl font-bold mb-4">Current Location Weather</h1>
+    <CurrentLocationWeather />
   </div>
 </template>
+
 
 <style scoped>
 body {
