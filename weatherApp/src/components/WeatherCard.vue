@@ -13,25 +13,23 @@ export default defineComponent({
     pressure: { type: Number, required: true },
     iconCode: { type: String, required: true },
   },
-  emits: ['remove'], // Declare the 'remove' event
+  emits: ['remove'],
 
   data() {
     return {
-      isRemoving: false, // New flag to manage removal animation
+      isRemoving: false,
     };
   },
 
   methods: {
     confirmRemoveCity() {
-      // Show a confirmation dialog before removing the city
       const confirmRemove = window.confirm(`Are you sure you want to remove ${this.location} from your favorite cities?`);
 
       if (confirmRemove) {
-        // Add a small delay to allow for animation
         this.isRemoving = true;
         setTimeout(() => {
           this.$emit('remove', this.location);
-        }, 300); // Match this with the transition duration
+        }, 300);
       }
     },
   },

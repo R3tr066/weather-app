@@ -4,14 +4,13 @@ import {get5DayForecast} from '@/services/weatherService';
 export default {
   data() {
     return {
-      cityInput: '', // Local variable to hold input city name
-      forecastData: [], // To store the 5-day forecast data
-      loading: false, // To show loading state
-      errorMessage: '', // To show error messages
+      cityInput: '',
+      forecastData: [],
+      loading: false,
+      errorMessage: '',
     };
   },
   methods: {
-    // Function to format the date
     formatDate(dateString) {
       return new Date(dateString).toLocaleDateString('en-US', {
         weekday: 'long',
@@ -20,17 +19,16 @@ export default {
       });
     },
 
-    // Fetch the weather forecast when the user submits a city name
     async fetchForecast() {
       if (this.cityInput.trim() === '') {
-        return; // Do nothing if the city name is empty
+        return;
       }
 
       this.loading = true;
-      this.errorMessage = ''; // Clear any previous errors
+      this.errorMessage = '';
 
       try {
-        this.forecastData = await get5DayForecast(this.cityInput); // This returns a promise
+        this.forecastData = await get5DayForecast(this.cityInput);
         this.loading = false;
       } catch (error) {
         this.loading = false;
@@ -38,26 +36,22 @@ export default {
       }
     },
 
-    // Save city and fetch forecast
     saveCity() {
       if (this.cityInput.trim() === '') {
-        alert('Input field can\'t be empty!'); // Show alert if input is empty
-        return; // Don't proceed with saving or fetching
+        alert('Input field can\'t be empty!');
+        return;
       }
 
-      // Save city name to localStorage
       localStorage.setItem('cityName', this.cityInput);
 
-      // Fetch the weather forecast
       this.fetchForecast();
     },
   },
   mounted() {
-    // Automatically fetch the weather when the component is mounted if a city is in localStorage
     const savedCity = localStorage.getItem('cityName');
     if (savedCity) {
-      this.cityInput = savedCity; // Pre-fill input field with saved city
-      this.fetchForecast(); // Fetch the weather for that city
+      this.cityInput = savedCity;
+      this.fetchForecast();
     }
   },
 };

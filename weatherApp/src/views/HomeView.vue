@@ -12,8 +12,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="p-6">
-    <h1 class="text-black dark:text-white text-2xl font-bold mb-4">Current Location Weather</h1>
+  <div class="p-4">
+    <h1 class="text-black dark:text-white text-2xl font-bold mb-4 transition-all duration-300">Current Location Weather</h1>
     <CurrentLocationWeather />
   </div>
 </template>

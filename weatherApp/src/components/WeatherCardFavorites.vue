@@ -28,7 +28,6 @@ export default defineComponent({
           })
         );
 
-        // Filter out null results (failed fetches)
         this.favoriteCitiesWeather = weatherData.filter(
           (weather) => weather !== null
         ) as WeatherData[];
@@ -39,14 +38,12 @@ export default defineComponent({
     addCity() {
       const trimmedCity = this.newCity.trim();
 
-      // Check if the city already exists (case-insensitive)
       if (
         trimmedCity &&
         !this.favoriteCities.some(
           (c) => c.toLowerCase() === trimmedCity.toLowerCase()
         )
       ) {
-        // Add the city with its original casing
         this.favoriteCities.push(trimmedCity);
         this.saveToLocalStorage();
         this.newCity = '';
@@ -55,17 +52,14 @@ export default defineComponent({
     },
 
     removeCity(city: string) {
-      // Remove the city from the favoriteCities array using case-insensitive comparison
       this.favoriteCities = this.favoriteCities.filter((c) =>
         c.toLowerCase() !== city.toLowerCase()
       );
 
-      // Remove the corresponding weather data using case-insensitive comparison
       this.favoriteCitiesWeather = this.favoriteCitiesWeather.filter(
         (weather) => weather.name.toLowerCase() !== city.toLowerCase()
       );
 
-      // Update localStorage
       this.saveToLocalStorage();
     },
 

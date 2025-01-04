@@ -21,7 +21,7 @@ export const useFavoritesStore = defineStore('favorites', () => {
   };
 
   return {
-    favoriteCities: computed(() => favoriteCities.value), // Ensures reactivity
+    favoriteCities: computed(() => favoriteCities.value),
     addCity,
     removeCity,
   };

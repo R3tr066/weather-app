@@ -38,22 +38,21 @@ export default defineComponent({
     },
 
     getWeatherIcon(condition: string, isDay: boolean) {
-      // Map the condition to GIFs for day and night
       const iconMap: Record<string, { day: string; night: string }> = {
-        Clear: {day: '/icons/sun.gif', night: '/icons/clearNight.png'},
-        Clouds: {day: '/icons/cloudyDay.gif', night: '/icons/cloudyNight.gif'},
-        Rain: {day: '/icons/rain.gif', night: '/icons/rain.gif'},
-        Thunderstorm: {day: '/icons/thunderStorm.gif', night: '/icons/thunderStorm.gif'},
-        Snow: {day: '/icons/snow.gif', night: '/icons/snow.gif'},
-        Fog: {day: '/icons/fog.gif', night: '/icons/fog.gif'},
+        Clear: {day: '/icons/clear-day.svg', night: '/icons/clear-night.svg'},
+        Clouds: {day: '/icons/cloudy-day.svg', night: '/icons/cloudy-night.svg'},
+        Rain: {day: '/icons/rainy-day.svg', night: '/icons/rainy-night.svg'},
+        Thunderstorm: {day: '/icons/scattered-thunderstorms.svg', night: '/icons/scattered-thunderstorms.svg'},
+        Snow: {day: '/icons/snowy-day.svg', night: '/icons/snowy-night.svg'},
+        Fog: {day: '/icons/fog-day.svg', night: '/icons/fog-night.svg'},
+        Haze: {day: '/icons/haze-day.svg', night: '/icons/haze-night.svg'},
       };
 
-      // Return the appropriate icon based on day or night
       return iconMap[condition]
         ? isDay
           ? iconMap[condition].day
           : iconMap[condition].night
-        : '/icons/default.gif'; // Fallback icon
+        : '/icons/default.gif';
     },
 
     isDayTime(sunrise: number, sunset: number, currentTime: number) {
@@ -61,39 +60,42 @@ export default defineComponent({
     }
   },
 
-    mounted() {
-      this.fetchCurrentLocationWeather();
-    },
-  });
+  mounted() {
+    this.fetchCurrentLocationWeather();
+  },
+});
 </script>
 
 <template>
   <!-- Weather Data -->
-  <div v-if="weather" class="bg-[#FFFAEC] dark:bg-[#3A3960] text-black dark:text-white p-4 rounded shadow-md flex">
-
-    <h1 class="text-lg font-bold">{{ weather.name }}</h1>
-
+  <div v-if="weather" class="text-black dark:text-white grid grid-cols-3 gap-4 transition-all duration-300">
     <div>
-      <!-- Weather Info -->
-      <p class="text-2xl font-semibold">{{ weather.main.temp }}°C</p>
-      <p class="text-sm text-gray-600 dark:text-gray-200 capitalize">{{ weather.weather[0].description }}</p>
-
-      <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
-        <p>Wind: <strong>{{ weather.wind.speed }} km/h</strong></p>
-        <p>Humidity: <strong>{{ weather.main.humidity }}%</strong></p>
-        <p>Feels Like: <strong>{{ weather.main.feels_like }}°C</strong></p>
-        <p>Pressure: <strong>{{ weather.main.pressure }} hPa</strong></p>
-      </div>
+      <h1 class="text-5xl font-bold">{{ weather.name }}</h1>
+      <br>
+      <h2 class="text-2xl font-semibold">{{ weather.main.temp }}°C</h2>
+      <p class="text-sm text-gray-600 dark:text-gray-200 capitalize transition-all duration-300">{{ weather.weather[0].description }}</p>
     </div>
+
+    <div class="grid grid-cols-2 text-xl">
+      <p>wind speed: <strong>{{ weather.wind.speed }} km/h</strong>
+      </p>
+
+      <p>Humidity: <strong>{{ weather.main.humidity }}%</strong></p>
+      <p>Feels Like: <strong>{{ weather.main.feels_like }}°C</strong></p>
+      <p>Pressure: <strong>{{ weather.main.pressure }} hPa</strong></p>
+    </div>
+
     <!-- Weather Icon -->
-    <img
-      :src="getWeatherIcon(
+    <div class="justify-items-center">
+      <img
+        :src="getWeatherIcon(
           weather.weather[0].main,
           isDayTime(weather.sys.sunrise * 1000, weather.sys.sunset * 1000, weather.dt * 1000)
         )"
-      alt="Weather Icon"
-      class="w-32 h-32"
-    />
+        alt="Weather Icon"
+        class="w-32 h-15"
+      />
+    </div>
   </div>
 
   <!-- Error Message -->
