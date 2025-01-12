@@ -39,13 +39,13 @@ export default defineComponent({
 
     getWeatherIcon(condition: string, isDay: boolean) {
       const iconMap: Record<string, { day: string; night: string }> = {
-        Clear: {day: '/icons/clear-day.svg', night: '/icons/clear-night.svg'},
-        Clouds: {day: '/icons/cloudy-day.svg', night: '/icons/cloudy-night.svg'},
-        Rain: {day: '/icons/rainy-day.svg', night: '/icons/rainy-night.svg'},
+        Clear: {day: '/icons/day/clear-day.svg', night: '/icons/night/clear-night.svg'},
+        Clouds: {day: '/icons/day/cloudy-day.svg', night: '/icons/night/cloudy-night.svg'},
+        Rain: {day: '/icons/dat/rainy-day.svg', night: '/icons/night/rainy-night.svg'},
         Thunderstorm: {day: '/icons/scattered-thunderstorms.svg', night: '/icons/scattered-thunderstorms.svg'},
-        Snow: {day: '/icons/snowy-day.svg', night: '/icons/snowy-night.svg'},
-        Fog: {day: '/icons/fog-day.svg', night: '/icons/fog-night.svg'},
-        Haze: {day: '/icons/haze-day.svg', night: '/icons/haze-night.svg'},
+        Snow: {day: '/icons/day/snowy-day.svg', night: '/icons/night/snowy-night.svg'},
+        Fog: {day: '/icons/day/fog-day.svg', night: '/icons/night/fog-night.svg'},
+        Haze: {day: '/icons/day/haze-day.svg', night: '/icons/night/haze-night.svg'},
       };
 
       return iconMap[condition]
@@ -67,26 +67,14 @@ export default defineComponent({
 </script>
 
 <template>
-  <!-- Weather Data -->
-  <div v-if="weather" class="text-black dark:text-white grid grid-cols-3 gap-4 transition-all duration-300">
-    <div>
-      <h1 class="text-5xl font-bold">{{ weather.name }}</h1>
-      <br>
-      <h2 class="text-2xl font-semibold">{{ weather.main.temp }}°C</h2>
-      <p class="text-sm text-gray-600 dark:text-gray-200 capitalize transition-all duration-300">{{ weather.weather[0].description }}</p>
-    </div>
 
-    <div class="grid grid-cols-2 text-xl">
-      <p>wind speed: <strong>{{ weather.wind.speed }} km/h</strong>
-      </p>
+  <div v-if="weather"
+       class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-900 dark:border-gray-700 dark:hover:bg-gray-700 transition-all duration-300">
 
-      <p>Humidity: <strong>{{ weather.main.humidity }}%</strong></p>
-      <p>Feels Like: <strong>{{ weather.main.feels_like }}°C</strong></p>
-      <p>Pressure: <strong>{{ weather.main.pressure }} hPa</strong></p>
-    </div>
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-black dark:text-white transition-all duration-300">{{weather.name}}</h5>
+    <br>
 
-    <!-- Weather Icon -->
-    <div class="justify-items-center">
+    <div class="flex justify-center">
       <img
         :src="getWeatherIcon(
           weather.weather[0].main,
@@ -96,7 +84,23 @@ export default defineComponent({
         class="w-32 h-15"
       />
     </div>
+
+    <div class="flex flex-col ">
+      <h2 class="text-center text-4xl font-semibold text-black dark:text-gray-200 capitalize transition-all duration-300">{{ weather.main.temp }}°C</h2>
+      <p class="text-center text-sm text-gray-600 dark:text-gray-200 capitalize transition-all duration-300">{{ weather.weather[0].description }}</p>
+    </div>
+
+    <br>
+
+    <div class="grid grid-cols-2 text-l text-black dark:text-gray-200  transition-all duration-300">
+      <p>wind speed: <strong>{{ weather.wind.speed }} km/h</strong></p>
+      <p class="pl-2">Humidity: <strong>{{ weather.main.humidity }}%</strong></p>
+      <p>Feels Like: <strong>{{ weather.main.feels_like }}°C</strong></p>
+      <p class="pl-2">Pressure: <strong>{{ weather.main.pressure }} hPa</strong></p>
+    </div>
+
   </div>
+
 
   <!-- Error Message -->
   <div v-else-if="errorMessage" class="text-red-500 p-4">
