@@ -1,17 +1,18 @@
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import {defineComponent, computed} from 'vue';
+import {getCustomWeatherIcon} from "@/utils/iconHelper";
 
 export default defineComponent({
   name: 'WeatherCard',
   props: {
-    location: { type: String, required: true },
-    temperature: { type: Number, required: true },
-    condition: { type: String, required: true },
-    windSpeed: { type: Number, required: true },
-    humidity: { type: Number, required: true },
-    feelsLike: { type: Number, required: true },
-    pressure: { type: Number, required: true },
-    iconCode: { type: String, required: true },
+    location: {type: String, required: true},
+    temperature: {type: Number, required: true},
+    condition: {type: String, required: true},
+    description: {type: String, required: true},
+    windSpeed: {type: Number, required: true},
+    humidity: {type: Number, required: true},
+    feelsLike: {type: Number, required: true},
+    pressure: {type: Number, required: true},
   },
   emits: ['remove'],
 
@@ -22,6 +23,7 @@ export default defineComponent({
   },
 
   methods: {
+    getCustomWeatherIcon,
     confirmRemoveCity() {
       const confirmRemove = window.confirm(`Are you sure you want to remove ${this.location} from your favorite cities?`);
 
@@ -37,59 +39,56 @@ export default defineComponent({
     date() {
       return new Date().toLocaleDateString();
     },
-    iconUrl() {
-      return `https://openweathermap.org/img/wn/${this.iconCode}@2x.png`;
-    },
   },
 });
 </script>
 
 <template>
   <div
-    class="weather-card bg-[#F7E7CE] rounded dark:bg-gray-900 p-4 shadow-md transition-all duration-300">
-    <div class="flex items-center justify-between mb-2">
-      <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{ location }}</h2>
-      <span class="text-gray-500 dark:text-gray-400 text-sm">{{ date }}</span>
+    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700 ml-4 transition">
+    <div class="flex justify-between">
+      <h2 class="text-xl font-semibold text-black dark:text-white transition">{{ location }}</h2>
+      <span class="text-gray-500 dark:text-gray-400 text-sm transition">{{ date }}</span>
 
-      <!-- Remove Button with Confirmation -->
+      <!-- Remove Button -->
       <button @click="confirmRemoveCity" title="Remove city">
-        <img src="/img/close.png" alt="close button" class="w-5 h-5">
+        <img src="/img/close.png"
+             alt="close button"
+             class="w-5 h-5">
       </button>
     </div>
 
-    <div class="flex flex-col sm:flex-row items-center justify-between my-4">
-      <img :src="iconUrl" :alt="condition" class="w-16 h-16 sm:w-24 sm:h-24 mx-auto" />
+    <div class="flex flex-col sm:flex-row items-center justify-between my-4 transition">
+      <img :src="getCustomWeatherIcon(condition,)"
+           :alt="condition"
+           class="w-32 h-15"/>
       <div class="text-center sm:text-left">
-        <p class="text-4xl font-bold text-blue-500">{{ temperature }}°C</p>
-        <p class="text-sm text-gray-500 dark:text-gray-400">{{ condition }}</p>
+        <p class="text-4xl font-bold text-black dark:text-white transition">{{ temperature }}°C</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 transition">{{ description }}</p>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-300">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600 dark:text-gray-300 transition">
       <div>
-        <p>Wind: <span class="font-semibold">{{ windSpeed }} km/h</span></p>
+        <p>Wind: <span class="font-semibold text-black dark:text-white transition">{{ windSpeed }} km/h</span></p>
       </div>
       <div>
-        <p>Humidity: <span class="font-semibold">{{ humidity }}%</span></p>
+        <p>Humidity: <span class="font-semibold text-black dark:text-white transition">{{ humidity }}%</span></p>
       </div>
       <div>
-        <p>Feels like: <span class="font-semibold">{{ feelsLike }}°</span></p>
+        <p>Feels like: <span class="font-semibold text-black dark:text-white transition">{{ feelsLike }}°</span></p>
       </div>
       <div>
-        <p>Pressure: <span class="font-semibold">{{ pressure }} hPa</span></p>
+        <p>Pressure: <span class="font-semibold text-black dark:text-white transition">{{ pressure }} hPa</span></p>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.weather-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 290px;
-  margin: 10px;
+.transition {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }
-
 </style>

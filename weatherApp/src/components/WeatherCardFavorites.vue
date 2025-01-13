@@ -102,12 +102,12 @@ export default defineComponent({
         :key="index"
         :location="weather.name"
         :temperature="weather.main.temp"
-        :condition="weather.weather[0].description"
+        :condition="weather.weather[0].main"
+        :description="weather.weather[0].description"
         :windSpeed="weather.wind.speed"
         :humidity="weather.main.humidity"
         :feelsLike="weather.main.feels_like"
         :pressure="weather.main.pressure"
-        :iconCode="weather.weather[0].icon"
         @remove="removeCity"
       />
     </div>

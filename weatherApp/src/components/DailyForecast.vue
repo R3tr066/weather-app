@@ -1,6 +1,6 @@
 <script>
-import { get5DayForecast } from '@/services/weatherService';
-import { getCustomWeatherIcon } from '@/utils/iconHelper';
+import {get5DayForecast} from '@/services/weatherService';
+import {getCustomWeatherIcon} from '@/utils/iconHelper';
 
 export default {
   data() {
@@ -71,49 +71,44 @@ export default {
       </button>
     </div>
 
-    <p>{{forecastData[0]}}</p>
 
     <!-- Forecast Cards -->
     <div v-if="forecastData.length" class="flex flex-wrap justify-center md:gap-6 mt-2 ml-5">
       <div v-for="forecast in forecastData" :key="forecast.date"
-           class="weather-card mt-2 ml-2 bg-[#F7E7CE] rounded dark:bg-gray-900 p-4 shadow-md">
-        <div class="transition-all duration-300 text-black dark:text-white">
+           class="block max-w-sm p-6 text-black bg-white border border-gray-200 rounded-lg shadow dark:text-white dark:bg-gray-900 dark:border-gray-700 transition-all duration-300">
+        <div class="flex justify-center transition-all duration-300 text-black dark:text-white">
           <h3>{{ formatDate(forecast.date) }}</h3>
         </div>
 
-        <div class="flex items-center justify-between">
-          <div class="font-semibold text-blue-700 text-center">
-            <p class="text-3xl">{{ forecast.temp }}°C</p>
-          </div>
+        <div class="flex justify-center">
+          <p class="text-3xl font-semibold ml-4 pt-8">
+            {{ forecast.temp }}°C
+          </p>
 
-          <div class="transition-all duration-300 text-black dark:text-white">
-            <img
-              :src="getCustomWeatherIcon(forecast.description)"
+          <img
+            :src="getCustomWeatherIcon(forecast.main)"
             alt="weather icon"
-            width="64px"
-            height="64px"
-            />
-          </div>
+            class="w-32 h-15 ml-4"
+          />
+
         </div>
-        <div class="flex justify-end text-black dark:text-white">
-          <p>{{ forecast.main }}</p>
-        </div>
+
+      <div class="flex justify-center text-black dark:text-white transition-all duration-300">
+        <p>{{ forecast.description }}</p>
       </div>
     </div>
+  </div>
 
-    <!-- Loading indicator or error message -->
-    <div v-else-if="loading">
-      <div class="loader"></div>
-    </div>
+  <!-- Loading indicator or error message -->
+  <div v-else-if="loading">
+    <div class="loader"></div>
+  </div>
 
-    <div v-else-if="errorMessage">{{ errorMessage }}</div>
+  <div v-else-if="errorMessage">{{ errorMessage }}</div>
   </div>
 </template>
 
 <style scoped>
-.weather-card {
-  transition: all 0.3s ease;
-}
 
 .loader {
   display: block;

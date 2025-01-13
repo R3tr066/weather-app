@@ -10,7 +10,7 @@ export interface WeatherData {
   weather: {
     description: string; // Weather description (e.g., "light rain")
     icon: string; // Weather icon code (e.g., "10d")
-  }[];
+  };
   wind: {
     speed: number; // Wind speed
   };
@@ -22,9 +22,8 @@ export interface WeatherData {
 }
 
 export interface ForecastData {
-  date: string; // Date or day of the week (e.g., "Mon")
-  temp: number; // Average temperature for the day
-  icon: string; // Weather icon code for the day
+  date: string;
+  temp: number;
   description: string;
   main: string;
 }
