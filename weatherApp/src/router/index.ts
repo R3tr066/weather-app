@@ -2,6 +2,8 @@ import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import DailyForecast from '@/views/DailyForecastView.vue'
 import FavouriteCitiesWeather from "@/views/FavoriteCitiesWeatherView.vue";
+import Contact from "@/views/contactUsView.vue";
+import thankYou from "@/views/thankYouView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +22,15 @@ const router = createRouter({
       path: '/daily-forecast',
       name: 'daily forecast',
       component: DailyForecast,
+    },
+    {
+      path: '/contact',
+      name: 'Contact',
+      component: Contact,
+    },{
+      path: '/thank-you',
+      name: 'thank you',
+      component: thankYou,
     },
   ],
 })
