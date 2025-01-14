@@ -1,5 +1,6 @@
 // Type definition for current weather data
 export interface WeatherData {
+  date: String;
   name: string; // City name
   main: {
     temp: number; // Current temperature
@@ -8,8 +9,7 @@ export interface WeatherData {
     humidity: number; // Humidity percentage
   };
   weather: {
-    description: string; // Weather description (e.g., "light rain")
-    icon: string; // Weather icon code (e.g., "10d")
+    description: string;
   };
   wind: {
     speed: number; // Wind speed
@@ -19,11 +19,4 @@ export interface WeatherData {
     sunset: number;  // Sunset time (UNIX timestamp)
   };
   dt: number; // Current time (UNIX timestamp)
-}
-
-export interface ForecastData {
-  date: string;
-  temp: number;
-  description: string;
-  main: string;
 }

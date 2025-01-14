@@ -1,7 +1,7 @@
 import axios from 'axios';
-import type {ForecastData, WeatherData} from '@/types/weatherTypes';
+import type { WeatherData } from '@/types/weatherTypes';
 
-const apiKey = 'your api key';
+const apiKey = 'your API key';
 const baseURL = 'https://api.openweathermap.org/data/2.5';
 
 export const getWeatherByCity = async (city: string): Promise<WeatherData> => {
@@ -40,7 +40,7 @@ export const getWeatherByCoordinates = async (
   }
 };
 
-export const get5DayForecast = async (city: string): Promise<ForecastData[]> => {
+export const get5DayForecast = async (city: string): Promise<WeatherData[]> => {
   try {
     const response = await axios.get(`${baseURL}/forecast`, {
       params: {
@@ -50,7 +50,7 @@ export const get5DayForecast = async (city: string): Promise<ForecastData[]> => 
       },
     });
 
-    const forecastData: ForecastData[] = [];
+    const forecastData: WeatherData[] = [];
     const groupedData: Record<
       string,
       {
@@ -66,7 +66,7 @@ export const get5DayForecast = async (city: string): Promise<ForecastData[]> => 
         groupedData[date] = {
           main: entry.weather[0].main,
           temps: [],
-          description: entry.weather[0].description, // Take the first description for now
+          description: entry.weather[0].description
         };
       }
 

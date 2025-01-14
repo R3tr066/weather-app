@@ -1,39 +1,12 @@
-# weatherApp
+# Weather app
+___
+- ### To use this app you need to create account on [openweathermap](https://openweathermap.org/).
+- ### then go [here](https://home.openweathermap.org/subscriptions/billing_info/onecall_30/base?key=base&service=onecall_30) and fill your infomation.
+- ### Create a copy of weatherServiceEdit.ts and name it weatherService.
+- ### Then go to your account and go to my API keys and copy your API key to weatherService a to apikey const.
 
-This template should help get you started developing with Vue 3 in Vite.
+## now you are free to use
 
-## Recommended IDE Setup
+___
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+#### This app was create as semestra project at Constantine the Philosopher University in Nitra

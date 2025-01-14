@@ -1,6 +1,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {getWeatherByCoordinates} from '@/services/weatherService';
+import { getCustomWeatherIcon } from '@/utils/iconHelper';
 import type {WeatherData} from '@/types/weatherTypes';
 
 export default defineComponent({
@@ -36,28 +37,7 @@ export default defineComponent({
         }
       );
     },
-
-    getWeatherIcon(condition: string, isDay: boolean) {
-      const iconMap: Record<string, { day: string; night: string }> = {
-        Clear: {day: '/icons/day/clear-day.svg', night: '/icons/night/clear-night.svg'},
-        Clouds: {day: '/icons/day/cloudy-day.svg', night: '/icons/night/cloudy-night.svg'},
-        Rain: {day: '/icons/dat/rainy-day.svg', night: '/icons/night/rainy-night.svg'},
-        Thunderstorm: {day: '/icons/scattered-thunderstorms.svg', night: '/icons/scattered-thunderstorms.svg'},
-        Snow: {day: '/icons/day/snowy-day.svg', night: '/icons/night/snowy-night.svg'},
-        Fog: {day: '/icons/day/fog-day.svg', night: '/icons/night/fog-night.svg'},
-        Haze: {day: '/icons/day/haze-day.svg', night: '/icons/night/haze-night.svg'},
-      };
-
-      return iconMap[condition]
-        ? isDay
-          ? iconMap[condition].day
-          : iconMap[condition].night
-        : '/icons/default.gif';
-    },
-
-    isDayTime(sunrise: number, sunset: number, currentTime: number) {
-      return currentTime >= sunrise && currentTime <= sunset;
-    }
+    getCustomWeatherIcon
   },
 
   mounted() {
@@ -76,9 +56,8 @@ export default defineComponent({
 
     <div class="flex justify-center">
       <img
-        :src="getWeatherIcon(
-          weather.weather[0].main,
-          isDayTime(weather.sys.sunrise * 1000, weather.sys.sunset * 1000, weather.dt * 1000)
+        :src="getCustomWeatherIcon(
+          weather.weather[0].main
         )"
         alt="Weather Icon"
         class="w-32 h-15"
